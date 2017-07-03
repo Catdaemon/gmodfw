@@ -1,0 +1,52 @@
+ //-------------------------------------------------------------------------
+//
+// Game data for FW Redux
+//
+//-------------------------------------------------------------------------
+
+@include "base.fgd"
+
+@PointClass base(Origin, Targetname) studioprop("models/items/item_item_crate_dynamic.mdl") = fw_pickup : "Item Box" [
+	model(studio) : "World Model (doesn't affect collision)"
+	item(string) : "Item contained" : "" : "Entity to give to the player."
+	amount(integer) : "Quantity given" : 1 : "How many of the entity to give to the player."
+	resettime(integer) : "Reset time" : 15 : "How long until it respawns, in seconds."
+
+	output OnPickup(void) : "Fires when the pickup is collected."
+	output OnRespawn(void) : "Fires when the pickup respawns."
+]
+
+@PointClass base(Origin, Angles, Targetname) studioprop() = fw_core : "Team Core"
+[
+    model(studio) : "World Model"
+    team(choices) : "Team" : 1 : "The team this belongs to." =
+	[
+		1: Red
+		2: Blue
+	]
+    health(integer) : "Health" : 0 : "How much damage this core can take before it is destroyed."
+    buildradius(integer) : "Build Radius" : 0 : "How far (in units) from the core players can build."
+	sound(string) : "Ambient Sound" : "" : "Path to sound to emit."
+
+	output OnDestroyed(void) : "Fires when the core is destroyed."
+]
+
+@PointClass base(Origin, Angles, Targetname) = fw_info :
+	"Point ent allowing map to specify some options."
+[
+	author(string) : "Author" : "" : "Your name for in-game credits."
+	name(string) : "Map Name" : "" : "The name of this map."
+	turrets(integer) : "Turrets" : 2 : "Number of turrets given to each team."
+]
+
+@PointClass base(Origin, Targetname) studioprop("models/props_trainstation/trainstation_clock001.mdl") = fw_turret_ground : "Ground Turret" [
+	health(integer) : "Health" : 600 : "How much damage the turret can take."
+	team(choices) : "Team" : 1 : "The team this belongs to." =
+	[
+		0: Angry
+		1: Red
+		2: Blue
+	]
+
+	output OnDestroyed(void) : "Fires when the turret dies."
+]

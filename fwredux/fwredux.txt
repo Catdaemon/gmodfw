@@ -1,0 +1,59 @@
+"fwredux"
+{
+	"base"		"base"
+	"title"		"FortWars Redux"
+	"maps"		"^fwr_"
+	"menusystem"	"1"
+	"workshopid"	""
+
+	"settings"
+	{
+		1
+		{
+			"name"		"fw_buildtime"
+			"text"		"Build Time"
+			"help"		"The time in seconds players are given to build their fort."
+			"type"		"Numeric"
+			"default"	"200"
+		}
+
+
+		2
+		{
+			"name"		"fw_fighttime"
+			"text"		"Fight Time"
+			"help"		"The time in seconds players are given to fight. 0 for infinite"
+			"type"		"Numeric"
+			"default"	"200"
+		}
+
+		3
+		{
+			"name"		"fw_corehealth"
+			"text"		"Core Health"
+			"help"		"The health given to each team's Power Core."
+			"type"		"Numeric"
+			"default"	"5000"
+		}
+
+		4
+		{
+			"name"		"fw_maxplayerprops"
+			"text"		"Max Player Props"
+			"help"		"The maximum props that can be held by any player. 0 for infinite."
+			"type"		"Numeric"
+			"default"	"20"
+		}
+
+		5
+		{
+			"name"		"fw_maxteamturrets"
+			"text"		"Max Team Turrets"
+			"help"		"The number of turrets distributed per team."
+			"type"		"Numeric"
+			"default"	"2"
+		}
+
+	}
+
+}

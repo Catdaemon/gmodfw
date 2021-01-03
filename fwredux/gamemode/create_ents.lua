@@ -9,13 +9,13 @@ mapDefs["fw_city_v2"]["cores"] = {
         team = 1,
         pos = Vector(5553.957031, -711.031250, 50),
         radius = 2000,
-        health = 1000
+        health = 500
     },
     {
         team = 2,
         pos = Vector(1647.729492, -5479.635742, 50),
         radius = 2000,
-        health = 1000
+        health = 500
     }
 }
 mapDefs["fw_city_v2"]["pickups"] = {
@@ -32,13 +32,13 @@ mapDefs["fw_concrete"]["cores"] = {
         team = 1,
         pos = Vector( -2.742074, 2261.489502, -320),
         radius = 2000,
-        health = 1000
+        health = 500
     },
     {
         team = 2,
         pos = Vector(-30.947739, -2330.658936, -320),
         radius = 2000,
-        health = 1000
+        health = 500
     }
 }
 mapDefs["fw_concrete"]["pickups"] = {
@@ -55,13 +55,13 @@ mapDefs["fw_mayan"]["cores"] = {
         team = 1,
         pos = Vector(-530.098938, 2704.490479, 80),
         radius = 1000,
-        health = 1000
+        health = 500
     },
     {
         team = 2,
         pos = Vector(-518.655945, 405.931335, 80),
         radius = 1000,
-        health = 1000
+        health = 500
     }
 }
 mapDefs["fw_mayan"]["pickups"] = {
@@ -78,13 +78,13 @@ mapDefs["fw_thebridge"]["cores"] = {
         team = 1,
         pos = Vector(452.194092, 3783.733643, 0),
         radius = 1000,
-        health = 1000
+        health = 500
     },
     {
         team = 2,
         pos = Vector(493.697174, 1779.699341, 0),
         radius = 1000,
-        health = 1000
+        health = 500
     }
 }
 mapDefs["fw_thebridge"]["pickups"] = {
@@ -102,7 +102,7 @@ mapDefs["fw_teleport"]["cores"] = {
         team = 1,
         pos = Vector(-312.843750, -28.250000, 980.031250),
         radius = 3000,
-        health = 1000
+        health = 500
     },
     {
         team = 2,

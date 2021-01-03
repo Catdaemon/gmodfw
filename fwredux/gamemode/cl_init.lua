@@ -4,6 +4,7 @@ include('cl_deathnotice.lua')
 include('cl_gmdm_view.lua')
 include('cl_help.lua')
 include( "cl_ui.lua" )
+include( "cl_scoreboard.lua" )
 
 local ICON_BLOCKS = Material("icon16/box.png")
 local ICON_TIME = Material("icon16/time.png")
@@ -140,7 +141,7 @@ local domemat = Material("models/props_combine/com_shield001a")
 local whitemat = Material("models/shiny")
 
 function GM:PostDrawOpaqueRenderables(depth, skybox)
-	if skybox then return end
+	--if skybox then return end
 	if self.GetRound() ~= 1 then return end
 	
 	for _,core in pairs(self.Cores) do

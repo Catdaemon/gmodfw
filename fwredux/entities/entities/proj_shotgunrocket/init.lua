@@ -48,7 +48,7 @@ function ENT:Explode()
 		local effectdata = EffectData()
 		effectdata:SetStart( self.Entity:GetPos() )
 		util.Effect( "explodesmoke", effectdata )
-		util.BlastDamage(self.Entity,self.Entity:GetOwner(),self.Entity:GetPos(), 200, 20)
+		util.BlastDamage(self.Entity,self.Entity:GetOwner(),self.Entity:GetPos(), 200, 80)
 		self.Die=true
 	end
 	end

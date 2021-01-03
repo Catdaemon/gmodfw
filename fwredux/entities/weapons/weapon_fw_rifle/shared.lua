@@ -40,52 +40,52 @@ end
 
  function SWEP:PrimaryAttack()
 
- --self.Owner:LagCompensation( true )
-local MuzzlePos = self.Owner:GetShootPos()
-if self.Weapon:Clip1() == 0 then return end
+	--self.Owner:LagCompensation( true )
+	local MuzzlePos = self.Owner:GetShootPos()
+	if self.Weapon:Clip1() == 0 then return end
 
-local trace = self.Owner:GetEyeTrace()
-local hit = trace.HitPos
+	local trace = self.Owner:GetEyeTrace()
+	local hit = trace.HitPos
 
-bullet = {}
-	bullet.Num    = 1
-	bullet.Src    = self.Owner:GetShootPos()
-	bullet.Dir    = self.Owner:GetAimVector()
-	bullet.Spread = Vector(0,0,0)
-	bullet.Tracer = 1
-	bullet.Force  = 10
-	bullet.Damage = 20
-self.Owner:FireBullets( bullet )
+	bullet = {}
+		bullet.Num    = 1
+		bullet.Src    = self.Owner:GetShootPos()
+		bullet.Dir    = self.Owner:GetAimVector()
+		bullet.Spread = Vector(0,0,0)
+		bullet.Tracer = 1
+		bullet.Force  = 10
+		bullet.Damage = 20
+	self.Owner:FireBullets( bullet )
 
- --self.Owner:LagCompensation( false )
-local effectdata = EffectData()
-	effectdata:SetOrigin( hit )
-	effectdata:SetStart( self.Owner:GetShootPos() )
-	effectdata:SetAttachment( 1 )
-	effectdata:SetEntity( self.Weapon )
-util.Effect( "ToolTracer", effectdata )
+	--self.Owner:LagCompensation( false )
+	local effectdata = EffectData()
+		effectdata:SetOrigin( hit )
+		effectdata:SetStart( self.Owner:GetShootPos() )
+		effectdata:SetAttachment( 1 )
+		effectdata:SetEntity( self.Weapon )
+	util.Effect( "ToolTracer", effectdata )
 
-local effectdata = EffectData()
-	effectdata:SetOrigin( hit )
-	effectdata:SetStart( self.Owner:GetShootPos() )
-	effectdata:SetAttachment( 1 )
-	effectdata:SetEntity( self.Weapon )
-util.Effect( "LaserTracer", effectdata )
+	local effectdata = EffectData()
+		effectdata:SetOrigin( hit )
+		effectdata:SetStart( self.Owner:GetShootPos() )
+		effectdata:SetAttachment( 1 )
+		effectdata:SetEntity( self.Weapon )
+	util.Effect( "LaserTracer", effectdata )
 
- 	local effectdata = EffectData()
- 		effectdata:SetOrigin( hit )
- 		effectdata:SetNormal( Vector(0,0,0) )
- 		effectdata:SetMagnitude( 8 )
- 		effectdata:SetScale( 1 )
- 		effectdata:SetRadius( 16 )
- 	util.Effect( "Sparks", effectdata, true, true )
+		local effectdata = EffectData()
+			effectdata:SetOrigin( hit )
+			effectdata:SetNormal( Vector(0,0,0) )
+			effectdata:SetMagnitude( 8 )
+			effectdata:SetScale( 1 )
+			effectdata:SetRadius( 16 )
+		util.Effect( "Sparks", effectdata, true, true )
 
-self.Owner:ViewPunch( Angle( -4,0,0 ) )
+	self.Owner:ViewPunch( Angle( -4,0,0 ) )
 
-self.Weapon:SetNextPrimaryFire(CurTime() + 0.2)
-self.Weapon:EmitSound( "NPC_Sniper.FireBullet", 1, 1 )
-self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
-self:TakePrimaryAmmo( 1 )
+	self.Weapon:SetNextPrimaryFire(CurTime() + 0.2)
+	self.Weapon:EmitSound( "NPC_Sniper.FireBullet", 1, 1 )
+	self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
+	self:TakePrimaryAmmo( 1 )
 
 end
 
@@ -101,18 +101,15 @@ end
  SWEP.Secondary.Ammo		= "none"
 
 function SWEP:SecondaryAttack()
-self.Weapon:SetNextSecondaryFire(CurTime() + .2)
-if CLIENT then return end
-if SERVER then
-	if self.Owner:GetFOV() == 90 then
-		self.Owner:SetFOV(30,.8)
-		self.Weapon:SetNetworkedBool( "Scoped", true )
-	elseif self.Owner:GetFOV() == 30 then
-		self.Owner:SetFOV(10,.8)
-		self.Weapon:SetNetworkedBool( "Scoped", true )
-	elseif self.Owner:GetFOV() == 10 then
-		self.Owner:SetFOV(90,.8)
+	self.Weapon:SetNextSecondaryFire(CurTime() + .2)
+
+	local isScoped = self.Weapon:GetNetworkedBool( "Scoped", false )
+	
+	if (isScoped) then
 		self.Weapon:SetNetworkedBool( "Scoped", false )
+		self.Owner:SetFOV(0,.8)
+	else
+		self.Weapon:SetNetworkedBool( "Scoped", true )
+		self.Owner:SetFOV(30,.8)
 	end
-end
 end

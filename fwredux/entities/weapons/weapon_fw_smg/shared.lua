@@ -22,7 +22,7 @@
  ---------------------------------------------------------*/
 
  SWEP.Primary.ClipSize		= 32
- SWEP.Primary.DefaultClip	= 16
+ SWEP.Primary.DefaultClip	= 128
  SWEP.Primary.Automatic		= true
  SWEP.Primary.Ammo		= "Pistol"
 

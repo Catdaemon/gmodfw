@@ -6,10 +6,12 @@ AddCSLuaFile( "cl_deathnotice.lua" )
 AddCSLuaFile( "cl_gmdm_view.lua" )
 AddCSLuaFile( "cl_help.lua" )
 AddCSLuaFile( "cl_ui.lua" )
+AddCSLuaFile( "cl_scoreboard.lua" )
 
 include( "shared.lua" )
 include( "spawnmenu/init.lua" )
 include( "commands.lua" )
+include( "create_ents.lua" )
 
 -- Network
 util.AddNetworkString( "RoundEnd" )
@@ -95,7 +97,7 @@ function GM:PlayerInitialSpawn( ply )
 end
 
 function GM:PlayerNoClip(ply, on)
-	return true
+	return self:GetRound() == 1
 end
 
 function GM:RoundEnd(winningTeam)
@@ -108,9 +110,15 @@ function GM:RoundEnd(winningTeam)
 	net.WriteInt( self.WinningTeam, 8 )
 	net.Broadcast()
 
-	timer.Simple(15, function()
-		game.LoadNextMap()
-	end)
+	if MapVote != nil then
+		timer.Simple(5, function()
+			MapVote.Start(30, false, 16, "fw")
+		end)
+	else
+		timer.Simple(15, function()
+			game.LoadNextMap()
+		end)
+	end
 end
 
 function GM:AssignTeam(pl)

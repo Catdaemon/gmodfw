@@ -73,12 +73,12 @@ Next match in in ]]..tostring(time)..[[ seconds!
         else
             message=[[
 You all suck!
-Both teams have lost the round, as none could do a simple job and
+Both teams have lost the round, as none of you could
 destroy your enemy's core. What a sorry state of affairs.
 Next match in in ]]..tostring(time)..[[ seconds.
 			]]
 		end
-		surface.SetDrawColor(50,50,75,255)
+		surface.SetDrawColor(50,50,75,128)
 		surface.DrawRect(0,0,ScrW(), ScrH())
 		draw.DrawText(message,"ChatFont",ScrW()/2,ScrH()/2,Color(255,255,255,255),TEXT_ALIGN_CENTER)
     end

@@ -25,7 +25,7 @@ end
 
 function ENT:OnTakeDamage(dmg)
 	if dmg:GetAttacker():IsPlayer() then
-		if self:GetTeam() == dmg:GetAttacker():Team() then return end
+		--if self:GetTeam() == dmg:GetAttacker():Team() then return end
 		self:SetPropHealth(self:GetPropHealth()-dmg:GetDamage())
 			if self:GetPropHealth() < 200 then
 				local prev=self.Entity:GetPos()

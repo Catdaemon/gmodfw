@@ -5,6 +5,7 @@ include('shared.lua')
 
 ENT.Amount = 1
 ENT.Item = false
+ENT.RandItem = true
 ENT.ResetTime = 10
 
 function ENT:Initialize()
@@ -30,15 +31,7 @@ function ENT:Initialize()
 
  	self.ActiveTime=0
 
-	if !self.Item then
-		self.RandItem=true
-		local rand=math.random(1,3)
-		if rand==1 then self.Item="item_ammo_smg1_grenade"
-			self.Amount=5
-		end
-		if rand==2 then self.Item="weapon_fw_rifle" end
-		if rand==3 then self.Item="item_ammo_pistol" end
-	end
+	self:Resetx()
 end
 
  function ENT:KeyValue( key, value )
@@ -62,24 +55,26 @@ end
  end
 
 function ENT:Resetx()
-	if GAMEMODE:GetRound() == 2 then
-		self.Entity:SetColor( Color(255,255,255,255))
-		local effectdata = EffectData()
-		effectdata:SetOrigin( self.Entity:GetPos() )
-		util.Effect( "item_respawn", effectdata )
-		if self.RandItem==true then
-			local randoms = {
-				["item_ammo_smg1_grenade"] = 5,
-				["weapon_fw_rifle"] = 1,
-				["item_ammo_pistol"] = 1,
-				["weapon_fw_rocketshotgun"] = 1,
-				["weapon_fw_propgun"] = 1,
-			}
-			local amt, item = table.Random(randoms)
-			self.Item = item
-			self.Amount = amt
-			local rand=math.random(1,4)
-		end
+	self.Entity:SetColor( Color(255,255,255,255))
+	local effectdata = EffectData()
+	effectdata:SetOrigin( self.Entity:GetPos() )
+	util.Effect( "item_respawn", effectdata )
+
+	if self.RandItem==true then
+		local randoms = {
+			["weapon_ar2"] = 1,
+			["item_ammo_smg1_grenade"] = 5,
+			["weapon_fw_rifle"] = 1,
+			["item_ammo_pistol"] = 1,
+			["weapon_fw_rocketshotgun"] = 1,
+			["weapon_fw_propgun"] = 1,
+			["weapon_fw_blowtorch"] = 1,
+			["weapon_rpg"] = 1,
+			["weapon_crossbow"] = 1,
+		}
+		local amt, item = table.Random(randoms)
+		self.Item = item
+		self.Amount = amt
 	end
 
 	local ed = EffectData()
@@ -97,7 +92,7 @@ end
  	if (!entity:IsPlayer()) then return end
 	if GAMEMODE:GetRound() == 1 then return end
 
-	for i=1,self.Amount do
+	for i=1, self.Amount do
 		entity:Give(self.Item)
 	end
 

@@ -24,12 +24,14 @@ GM.TeamMaxCoreHealth = 0
 -- Setup
 --
 function GM:Initialize()
-	
+	timer.Create( "GlobalCacheTimer", 1, 0, function() self:CacheValues() end )
+	timer.Create( "GlobalKillTimer", 0.2, 0, function() self:KillOOB() end )
 end
 
 function GM:InitPostEntity()
 	self:SetupFW()
 
+	if SERVER then self:CreateEnts() end
 	if CLIENT then self:CreateUI() end
 end
 
@@ -48,16 +50,45 @@ function GM:SetupFW()
 		SetGlobalString("mapauthor", info[1].Authorx)
 	end
 
-	timer.Simple(0.1, function()
-		-- Cache stuff
-		self.Cores = ents.FindByClass("fw_core")
+	-- Remove crud
+	local walls = ents.FindByClass("func_wall_toggle")
+	for _, ent in pairs(walls) do
+		ent:Remove()
+	end
+end
 
+-- 
+-- Global caching
+-- 
+function GM:CacheValues()
+	-- Cache stuff
+	self.Cores = ents.FindByClass("fw_core")
+
+	if (self.TeamMaxCoreHealth == 0) then
 		for _, core in pairs(self.Cores) do
 			if core:GetTeam() == 1 then
 				self.TeamMaxCoreHealth = self.TeamMaxCoreHealth + core:GetCoreHealth()
 			end
 		end
-	end)
+	end
+end
+
+--
+-- Kill out of bounds players
+--
+function GM:KillOOB()
+	local round = self:GetRoundName()
+	if round == "Build" then
+		for _, ply in pairs(player.GetAll()) do
+			for _, core in pairs(self.Cores) do
+				if core:GetTeam() != ply:Team() then
+					if core:GetPos():Distance(ply:GetPos()) <= core:GetBuildRadius() && ply:Alive() then
+						ply:Spawn()
+					end
+				end
+			end
+		end
+	end
 end
 
 --
@@ -79,12 +110,18 @@ end
 --
 function GM:GetRoundTime()
 	local round = self:GetRoundName()
-	local time = 0;
+	local time = 0
 
 	if round == "Build" then
-		time = GetConVar("fw_buildtime"):GetInt()
+		local cvar = GetConVar("fw_buildtime")
+		if cvar != nil then
+			time = cvar:GetInt()
+		end
 	elseif round == "Fight" then
-		time = GetConVar("fw_fighttime"):GetInt()
+		local cvar = GetConVar("fw_fighttime")
+		if cvar != nil then
+			time = cvar:GetInt()
+		end
 	end
 
 	if time == 0 then
@@ -113,7 +150,7 @@ end
 -- Returns time left in seconds
 --
 function GM:GetTimeLeft()
-	local timeLeft = GetGlobalInt( "roundEndTime" ) - CurTime()
+	local timeLeft = GetGlobalInt( "roundEndTime", 0 ) - CurTime()
 	
 	if timeLeft > 0 then
 		return timeLeft
@@ -147,11 +184,11 @@ end
 function GM:CreateTeams()
 	TEAM_REBELS = 1
 	team.SetUp( TEAM_REBELS, "Red", Color( 64, 32, 32 ) )
-	team.SetSpawnPoint( TEAM_REBELS, "info_player_rebel" )
+	team.SetSpawnPoint( TEAM_REBELS, "info_player_red" )
 
 	TEAM_POLICE = 2
 	team.SetUp( TEAM_POLICE, "Blue", Color( 0, 0, 200 ) )
-	team.SetSpawnPoint( TEAM_POLICE, "info_player_combine" )
+	team.SetSpawnPoint( TEAM_POLICE, "info_player_blue" )
 end
 
 function GM:IsValidSpawnPos(ply, position)

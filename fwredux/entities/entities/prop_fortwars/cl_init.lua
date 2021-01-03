@@ -16,7 +16,7 @@ function ENT:Think()
 end
 
 function ENT:Draw()
-	local myteam=self:GetTeam()
+	local myteam = self:GetTeam()
 	local fraction = self:GetHealthScalar()
 
 	self.Entity:SetMaterial(self.OrigMat)

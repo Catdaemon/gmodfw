@@ -19,14 +19,18 @@ function ENT:PhysicsSimulate( phys, deltatime )
 	if GAMEMODE:GetRound() ~= 1 then return end
     
     if GAMEMODE:IsValidSpawnPos(self:GetPropOwner(), self:GetPos()) then return end
+
     -- Find nearest core
     local nearestCore = false
-    local shortestDistance = 10000000
+    local shortestDistance = 1000000000
+    local myTeam = self:GetTeam()
     for _,core in pairs(GAMEMODE.Cores) do
-        local thisDistance = (phys:GetPos() - core:GetPos()):Length()
-        if thisDistance < shortestDistance then
-            nearestCore = core
-            shortestDistance = thisDistance
+        if core:GetTeam() == myTeam then
+            local thisDistance = (phys:GetPos() - core:GetPos()):Length()
+            if thisDistance < shortestDistance then
+                nearestCore = core
+                shortestDistance = thisDistance
+            end
         end
     end
 

@@ -100,10 +100,9 @@ function GM:CreateUI()
                 Vector(8, 8)
             },
             {
-                [[The idea of this game mode is to defend your core by building a fort and then battling the enemy team.
-In the gamemode Fort Wars Teamplay, (fwt_ maps), you simply try to massacre the other team.
-In the gamemode Fort Wars Core, (fwc_ maps), you have to destroy all of the enemy's cores to win.
-Each team can have one or more cores, depending on the map!]],
+                [[The objective of this game is to defend your core by building a fort and then battling the enemy team to destroy theirs.
+Each team can have one or more cores, depending on the map!
+]],
                 Color( 200,200,200 ),
                 Vector(16,0)
             },
@@ -113,9 +112,9 @@ Each team can have one or more cores, depending on the map!]],
                 Vector(8, 8)
             },
             {
-                [[BUILD - Construct your fort. Each player gets a limited number of spawns, so work together!
+                [[BUILD - Construct your fort. Each player gets a limited number of props to use, so work together!
     You can only build within a specified distance of a core.
-FIGHT - Fight! Weapon pickups are available.]],
+FIGHT - Fight! Weapon pickups are available in floating boxes - Find them and walk over them!]],
                 Color( 200,200,200 ),
                 Vector(16, 0)
             },
@@ -131,7 +130,7 @@ FIGHT - Fight! Weapon pickups are available.]],
 - Standing very close to turrets (or on top!) makes them unable to hit you.
 - Shoot SMG grenades into confined spaces.
 - You have a gravity gun, use it!
-- If you're given a turret, think carefully about where you place it.]],
+- If you're given a turret, you are lucky! Think carefully about where you place it.]],
                 Color( 200,200,200 ),
                 Vector(16, 0)
             }
@@ -159,9 +158,12 @@ FIGHT - Fight! Weapon pickups are available.]],
         Vector(8, 8)
     },
     {
-        [[This gamemode was originally made by Catdaemon for a version of gmod which did not have Lua.
-I then ported it to Lua, and eventually abandoned the project and released it.
-This new gamemode still contains portions of that code that I liked, but has mostly been rewritten.]],
+        [[This gamemode was originally made by Catdaemon for a version of gmod which did not have Lua. It was then
+made for a version of gmod which did have Lua, which then broke when the Lua was updated.
+I then ported it to this version of Gmod Lua, which you are now playing!
+This new gamemode still contains portions of that code that I liked before, but has mostly been rewritten.
+Some portions like the head bob and ricochet effects are stolen from a very old gamemode called GMDM which came
+with Gmod a long time ago.]],
         Color( 200,200,200 ),
         Vector(16,0)
     },

@@ -45,7 +45,7 @@ function SWEP:Throw(qty)
 
         local velocity = self.Owner:GetAimVector()
         velocity = velocity * (phys:GetMass() * 5000)
-        velocity = velocity + ( VectorRand() * (100 * qty) ) -- scale up randomness with quantity thrown
+        velocity = velocity + ( VectorRand() * (300 * qty) ) -- scale up randomness with quantity thrown
         phys:ApplyForceCenter( velocity )
 
         timer.Create( "pdel"..CurTime()..i, 15, 1, function()

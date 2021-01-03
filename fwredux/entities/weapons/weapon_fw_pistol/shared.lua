@@ -54,12 +54,14 @@ SWEP.AutoSwitchFrom		    = true
 
  function SWEP:SecondaryAttack()
 
- 	self.Weapon:SetNextSecondaryFire( CurTime() + 0.3 )
- 	self.Weapon:SetNextPrimaryFire( CurTime() + 0.3 )
+ 	self.Weapon:SetNextSecondaryFire( CurTime() + 0.9 )
+ 	self.Weapon:SetNextPrimaryFire( CurTime() + 0.9 )
 
  	if ( !self:CanPrimaryAttack() ) then return end
 	 --self.Owner:LagCompensation( true )
- 	self:GMDMShootBullet( 14, "Weapon_Pistol.Single", math.Rand( -1, -0.5 ), math.Rand( -1, 1 ) )
+	 self:GMDMShootBullet( 14, "Weapon_Pistol.Single", math.Rand( -1, -0.5 ), math.Rand( -1, 1 ) )
+	 self:GMDMShootBullet( 14, "Weapon_Pistol.Single", math.Rand( -1, -0.5 ), math.Rand( -1, 1 ) )
+	 self:GMDMShootBullet( 14, "Weapon_Pistol.Single", math.Rand( -1, -0.5 ), math.Rand( -1, 1 ) )
 	 --self.Owner:LagCompensation( false )
  	self:TakePrimaryAmmo( 1 )
 

@@ -72,6 +72,30 @@ mapDefs["fw_mayan"]["pickups"] = {
     Vector(-510.695435, 1297.572021, 100),
 }
 
+mapDefs["fw_thebridge"] = {}
+mapDefs["fw_thebridge"]["cores"] = {
+    {
+        team = 1,
+        pos = Vector(-460.904755, 1857.535034, 0),
+        radius = 1000,
+        health = 1000
+    },
+    {
+        team = 2,
+        pos = Vector(452.194092, 3783.733643, 0),
+        radius = 1000,
+        health = 1000
+    }
+}
+mapDefs["fw_thebridge"]["pickups"] = {
+    Vector(647.906250, 2109.687500, -283.030334),
+    Vector(356.937500, 2097.718750, -283.030334),
+    Vector(371.968750, 3603.187500, -281.264282),
+    Vector(642.937500, 3616.031250, -281.340179),
+    Vector(378.500000, 2836.343750, -179.030334),
+    Vector(564.375000, 2837.750000, -179.030334),
+}
+
 function GM:CreateEnts()
     -- Create spawn areas
     for _, point in pairs(ents.FindByClass("info_player_red")) do

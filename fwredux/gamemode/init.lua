@@ -110,9 +110,9 @@ function GM:RoundEnd(winningTeam)
 	net.WriteInt( self.WinningTeam, 8 )
 	net.Broadcast()
 
-	if MapVote != nil then
+	if MapVote != nil && MapVote.Start != nil then
 		timer.Simple(5, function()
-			MapVote.Start(30, false, 16, "fw")
+			MapVote.Start(30, false, 16, 'fw_')
 		end)
 	else
 		timer.Simple(15, function()

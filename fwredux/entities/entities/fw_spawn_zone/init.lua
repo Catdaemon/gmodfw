@@ -36,6 +36,13 @@ function ENT:Touch( entity )
 	entity:SetMoveType( MOVETYPE_NONE )
 	entity:SetNoDraw( true )
 
+	if entity:GetClass() == "prop_fortwars" then
+		-- Credit the player with their prop back
+		local owner = entity:GetOwner()
+		owner:SetRemainingProps( owner:GetRemainingProps() + 1 )
+
+	end
+
 	-- Send Effect
 	local ed = EffectData()
 		ed:SetOrigin( entity:GetPos() )

@@ -32,7 +32,7 @@ SWEP.Primary.Ammo		    = "none"
 	trace.filter = pl
     local tr = util.TraceLine( trace )
     
-    if tr.Entity && tr.Entity:IsValid() && tr.Entity:GetClass() == "prop_fortwars" then
+    if tr.Entity && tr.Entity:IsValid() && (tr.Entity:GetClass() == "prop_fortwars" || tr.Entity:GetClass() == "fw_core" || tr.Entity:GetClass() == "fw_turret_ground") then
         if SERVER then
             tr.Entity:TakeDamage(2, pl, self.Entity)
         end

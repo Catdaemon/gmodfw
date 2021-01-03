@@ -76,13 +76,13 @@ mapDefs["fw_thebridge"] = {}
 mapDefs["fw_thebridge"]["cores"] = {
     {
         team = 1,
-        pos = Vector(-460.904755, 1857.535034, 0),
+        pos = Vector(452.194092, 3783.733643, 0),
         radius = 1000,
         health = 1000
     },
     {
         team = 2,
-        pos = Vector(452.194092, 3783.733643, 0),
+        pos = Vector(493.697174, 1779.699341, 0),
         radius = 1000,
         health = 1000
     }
@@ -100,15 +100,15 @@ mapDefs["fw_teleport"] = {}
 mapDefs["fw_teleport"]["cores"] = {
     {
         team = 1,
-        pos = Vector(5439.750000, -48.781250, 980.031250),
-        radius = 1000,
+        pos = Vector(-312.843750, -28.250000, 980.031250),
+        radius = 3000,
         health = 1000
     },
     {
         team = 2,
-        pos = Vector(-312.843750, -28.250000, 980.031250),
-        radius = 1000,
-        health = 1000
+        pos = Vector(5439.750000, -48.781250, 980.031250),
+        radius = 3000,
+        health = 2000
     }
 }
 mapDefs["fw_teleport"]["pickups"] = {

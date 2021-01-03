@@ -16,7 +16,7 @@
  	self.DieTime = CurTime() + self.TracerTime 
  	 
  	// Play ricochet sound with random pitch 
- 	EmitSound( "weapons/fx/rics/ric4.wav", self.StartPos, 1, CHAN_WEAPON, 1, 75, 0,  math.random( 110, 180 ) ) 
+ 	EmitSound( "weapons/fx/rics/ric4.wav", self.StartPos, 1, CHAN_WEAPON, 0.2, 75, 0,  math.random( 110, 180 ) ) 
    
  end 
    

@@ -82,7 +82,7 @@ function ENT:Initialize()
 		util.Effect( "propspawn", ed, true, true )
 
 		if self:GetPropHealth() < 100 then
-			self:SetPropHealth(600)
+			self:SetPropHealth(200)
 		end
 	end)
 end
@@ -243,7 +243,7 @@ function ENT:OnTakeDamage(dmg)
 				effectdata:SetStart(self.Entity:GetPos()+Vector(0,0,200) )
 				util.Effect( "explodesmoke", effectdata )
 
-				self.KeepProp:SetParent(false)
+				self.KeepProp:SetParent(nil)
 				self.KeepProp:PhysicsInit( SOLID_VPHYSICS )
 				self.KeepProp:SetMoveType( MOVETYPE_VPHYSICS )
 				self.KeepProp:SetSolid( SOLID_VPHYSICS )
